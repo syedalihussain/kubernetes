@@ -1,0 +1,14 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmChart
+metadata:
+  name: nodejs-application
+  namespace: default
+spec:
+  interval: 5m0s
+  chart: nodejs-application
+  reconcileStrategy: ChartVersion
+  sourceRef:
+    kind: HelmRepository
+    name: nodejs-application
+  version: '0.*'
