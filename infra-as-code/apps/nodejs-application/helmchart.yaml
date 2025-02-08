@@ -5,10 +5,10 @@ metadata:
   name: nodejs-application
   namespace: default
 spec:
-  interval: 5m0s
+  interval: 1m0s
   chart: nodejs-application
   reconcileStrategy: ChartVersion
   sourceRef:
     kind: HelmRepository
     name: nodejs-application
-  version: '0.*'
+  version: '0.*.*'
