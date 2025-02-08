@@ -5,5 +5,5 @@ metadata:
   name: nodejs-application
   namespace: default
 spec:
-  interval: 1m0s
+  interval: 15m0s
   url: https://syedalihussain.github.io/helm-charts/

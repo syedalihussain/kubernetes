@@ -4,7 +4,7 @@ metadata:
   name: nodejs-application
   namespace: default
 spec:
-  interval: 1m
+  interval: 15m
   chartRef:
     kind: HelmChart
     name: nodejs-application
