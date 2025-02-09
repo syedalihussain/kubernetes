@@ -1,9 +1,0 @@
----
-apiVersion: source.toolkit.fluxcd.io/v1
-kind: HelmRepository
-metadata:
-  name: nodejs-application
-  namespace: default
-spec:
-  interval: 15m0s
-  url: https://syedalihussain.github.io/helm-charts/
