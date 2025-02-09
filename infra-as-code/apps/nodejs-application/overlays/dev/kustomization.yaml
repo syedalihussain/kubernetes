@@ -8,6 +8,7 @@ patches:
     - op: add
       path: /spec/values
       value:
-        replicaCount: 5
+        replicaCount: 1
         image:
-          tag: prod-v1.2.0
+          repository: syedalihussain/nodejs-application
+          tag: dev-v1.2.0
