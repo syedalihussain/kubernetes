@@ -1,0 +1,13 @@
+resources:
+- ../../../base
+patches:
+- target:
+    kind: HelmRelease
+    name: nodejs-application
+  patch: |
+    - op: add
+      path: /spec/values
+      value:
+        replicaCount: 5
+        image:
+          tag: prod-v1.2.0
