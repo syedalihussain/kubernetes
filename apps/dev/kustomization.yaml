@@ -13,4 +13,4 @@ patches:
         replicaCount: 1
         image:
           repository: syedalihussain/nodejs-application
-          tag: dev-v1.2.0
+          tag: v1.0.2
