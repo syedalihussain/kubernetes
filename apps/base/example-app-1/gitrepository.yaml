@@ -7,4 +7,6 @@ spec:
   interval: 1m0s
   ref:
     branch: fluxcd-bootstrap
+  secretRef:
+    name: github-token-secret
   url: https://github.com/syedalihussain/example-app-1
