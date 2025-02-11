@@ -5,6 +5,7 @@ metadata:
   namespace: example-app-1
 spec:
   interval: 15m
+  targetNamespace: example-app-1
   path: "./deploy"
   prune: true
   sourceRef:
