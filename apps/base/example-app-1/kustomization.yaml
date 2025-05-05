@@ -1,0 +1,49 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: example-app-1
+  namespace: example-app-1
+spec:
+  interval: 15m
+  targetNamespace: example-app-1
+  path: "./deploy"
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: example-app-1
+  patches:
+    - patch: |-
+        apiVersion: apps/v1
+        kind: Deployment
+        metadata:
+          namespace: example-app-1      
+      target:
+        kind: Deployment
+        labelSelector: "app=example-app-1"
+    - patch: |-
+        apiVersion: v1
+        kind: Service
+        metadata:
+          namespace: example-app-1      
+      target:
+        kind: Service
+        labelSelector: "app=example-app-1"
+    # - patch: |
+    #     - op: add
+    #       path: /spec/template/spec/securityContext
+    #       value:
+    #         runAsUser: 10000
+    #         fsGroup: 1337
+    #     - op: add
+    #       path: /spec/template/spec/containers/0/securityContext
+    #       value:
+    #         readOnlyRootFilesystem: true
+    #         allowPrivilegeEscalation: false
+    #         runAsNonRoot: true
+    #         capabilities:
+    #           drop:
+    #             - ALL        
+    #   target:
+    #     kind: Deployment
+    #     name: podinfo
+    #     namespace: apps
