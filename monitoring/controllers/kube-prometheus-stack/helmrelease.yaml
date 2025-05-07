@@ -9,8 +9,10 @@ spec:
     name: kube-prometheus-stack
   install:
     crds: Create
+    timeout: 15m0s
   upgrade:
     crds: CreateReplace
+    timeout: 15m0s
   driftDetection:
     mode: enabled
     ignore:
