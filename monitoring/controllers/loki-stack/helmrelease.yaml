@@ -3,6 +3,12 @@ kind: HelmRelease
 metadata:
   name: loki-stack
 spec:
+  install:
+    remediation:
+      retries: -1
+  upgrade:
+    remediation:
+      retries: -1
   interval: 5m
   dependsOn:
     - name: kube-prometheus-stack
