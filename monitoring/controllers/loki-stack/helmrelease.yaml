@@ -4,11 +4,11 @@ metadata:
   name: loki-stack
 spec:
   install:
-    remediation:
-      retries: -1
+    disableWait: true
+    timeout: 15m0s
   upgrade:
-    remediation:
-      retries: -1
+    disableWait: true
+    timeout: 15m0s
   interval: 5m
   dependsOn:
     - name: kube-prometheus-stack
