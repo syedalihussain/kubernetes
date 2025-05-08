@@ -17,6 +17,80 @@ spec:
   # https://github.com/grafana/helm-charts/blob/main/charts/loki-stack/values.yaml
   # https://github.com/grafana/loki/blob/main/production/helm/loki/values.yaml
   values:
+    compactor:
+      extraArgs:
+        - -config.expand-env=true
+      extraEnvVars:
+        - name: MY_POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+
+    gateway: 
+      extraArgs:
+        - -config.expand-env=true
+      extraEnvVars:
+        - name: MY_POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+    memcachedchunks:
+      extraArgs:
+        - -config.expand-env=true
+      extraEnvVars:
+        - name: MY_POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+
+    memcachedfrontend:
+      extraArgs:
+        - -config.expand-env=true
+      extraEnvVars:
+        - name: MY_POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+    distributor:
+      extraArgs:
+        - -config.expand-env=true
+      extraEnvVars:
+        - name: MY_POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+    ingester:
+      extraArgs:
+        - -config.expand-env=true
+      extraEnvVars:
+        - name: MY_POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+    querier:
+      extraArgs:
+      - -config.expand-env=true
+      extraEnvVars:
+      - name: MY_POD_IP
+        valueFrom:
+          fieldRef:
+            fieldPath: status.podIP
+      queryFrontend:
+        extraArgs:
+        - -config.expand-env=true
+        extraEnvVars:
+        - name: MY_POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+      queryScheduler:
+        extraArgs:
+        - -config.expand-env=true
+        extraEnvVars:
+        - name: MY_POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
     promtail:
       enabled: true
     loki:
@@ -32,3 +106,12 @@ spec:
         table_manager:
           retention_deletes_enabled: true
           retention_period: 12h
+        distributor:
+          ring:
+            kvstore:
+              store: memberlist
+          memberlist:
+            bind_addr:
+            - ${MY_POD_IP}
+            join_members:
+            - {{ include "grafana-loki.gossip-ring.fullname" . }}
