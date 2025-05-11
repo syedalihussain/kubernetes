@@ -114,4 +114,4 @@ spec:
           bind_addr:
             - ${MY_POD_IP}
           join_members:
-            - "{{ include "grafana-loki.gossip-ring.fullname" . }}"
+            - loki-stack-memberlist.monitoring.svc.cluster.local
