@@ -3,12 +3,6 @@ kind: HelmRelease
 metadata:
   name: loki-stack
 spec:
-  install:
-    disableWait: true
-    timeout: 15m0s
-  upgrade:
-    disableWait: true
-    timeout: 15m0s
   interval: 5m
   dependsOn:
     - name: kube-prometheus-stack
