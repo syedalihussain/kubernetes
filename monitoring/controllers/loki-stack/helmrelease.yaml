@@ -116,8 +116,8 @@ spec:
           ring:
             kvstore:
               store: memberlist
-          # memberlist:
-          #   bind_addr:
-          #     - ${MY_POD_IP}
-          #   join_members:
-          #     - "{{ include "grafana-loki.gossip-ring.fullname" . }}"
+          memberlist:
+            bind_addr:
+              - ${MY_POD_IP}
+            join_members:
+              - "{{ include "grafana-loki.gossip-ring.fullname" . }}"
