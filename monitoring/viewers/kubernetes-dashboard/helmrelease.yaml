@@ -6,7 +6,7 @@ spec:
   interval: 5m
   chart:
     spec:
-      version: "7.10.4"
+      version: "7.12.0"
       chart: kubernetes-dashboard
       sourceRef:
         kind: HelmRepository
