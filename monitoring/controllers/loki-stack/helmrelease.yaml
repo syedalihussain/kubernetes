@@ -32,7 +32,7 @@ spec:
             fieldRef:
               fieldPath: status.podIP
 
-    gateway: 
+    gateway:
       extraArgs:
         - -config.expand-env=true
       extraEnvVars:
@@ -75,28 +75,28 @@ spec:
               fieldPath: status.podIP
     querier:
       extraArgs:
-      - -config.expand-env=true
+        - -config.expand-env=true
       extraEnvVars:
-      - name: MY_POD_IP
-        valueFrom:
-          fieldRef:
-            fieldPath: status.podIP
+        - name: MY_POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
       queryFrontend:
         extraArgs:
-        - -config.expand-env=true
+          - -config.expand-env=true
         extraEnvVars:
-        - name: MY_POD_IP
-          valueFrom:
-            fieldRef:
-              fieldPath: status.podIP
+          - name: MY_POD_IP
+            valueFrom:
+              fieldRef:
+                fieldPath: status.podIP
       queryScheduler:
         extraArgs:
-        - -config.expand-env=true
+          - -config.expand-env=true
         extraEnvVars:
-        - name: MY_POD_IP
-          valueFrom:
-            fieldRef:
-              fieldPath: status.podIP
+          - name: MY_POD_IP
+            valueFrom:
+              fieldRef:
+                fieldPath: status.podIP
     promtail:
       enabled: true
     loki:
@@ -116,8 +116,8 @@ spec:
           ring:
             kvstore:
               store: memberlist
-          memberlist:
-            bind_addr:
-              - ${MY_POD_IP}
-            join_members:
-              - 'loki-memberlist'
+          # memberlist:
+          #   bind_addr:
+          #     - ${MY_POD_IP}
+          #   join_members:
+          #     - "{{ include "grafana-loki.gossip-ring.fullname" . }}"
