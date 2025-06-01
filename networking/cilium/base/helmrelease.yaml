@@ -1,0 +1,33 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: cilium
+  namespace: kube-system
+spec:
+  interval: 15m
+  chartRef:
+    kind: HelmChart
+    name: cilium
+    namespace: flux-system
+  install:
+    createNamespace: true
+    remediation:
+      retries: -1
+  upgrade:
+    remediation:
+      retries: -1
+  values:
+    nodeinit:
+      enabled: true
+      reconfigureKubelet: true
+      removeCbrBridge: true
+    cni:
+      exclusive: true
+    hubble:
+      enabled: true
+      relay:
+        enabled: true
+      tls:
+        enabled: true
+      ui:
+        enabled: true

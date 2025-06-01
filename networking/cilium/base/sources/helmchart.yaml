@@ -1,0 +1,14 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmChart
+metadata:
+  name: cilium
+  namespace: flux-system
+spec:
+  interval: 15m0s
+  chart: cilium
+  reconcileStrategy: ChartVersion
+  sourceRef:
+    kind: HelmRepository
+    name: cilium
+  version: '1.17.*'
